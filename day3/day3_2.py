@@ -30,16 +30,17 @@ def get_number(lines) -> int:
         digits = []
         left_idx = 0
         for j in range(NUM_DIGITS):
-            dig = 0
-            for i in range(left_idx, (len(line)-(NUM_DIGITS - 1 - j))):
-                if line[i] > dig:
-                    dig = line[i]
+            current_digit = 0
+            for i in range(left_idx, (len(line) - (NUM_DIGITS - 1 - j))):
+                if line[i] > current_digit:
+                    current_digit = line[i]
                     left_idx = i + 1
-                    if dig == 9:
+                    if current_digit == 9:
                         break
-            digits.append(dig)
+            digits.append(current_digit)
 
-        result += int("".join([str(dig) for dig in digits]))
+        result += int("".join([str(current_digit)
+                      for current_digit in digits]))
 
     return result
 

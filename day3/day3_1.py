@@ -16,9 +16,9 @@ def read_input(path: Path = INPUT):
 
 def get_number(lines) -> int:
     """
-    Processes the numbers provided by the input in such a case, that the largest
-    two digit integer of a given integer string will be extracted and summed up
-    accross all integerstring.
+    Processes the input lines to find the largest two-digit number from each line
+    by selecting the maximum digit for the tens place and the maximum digit for the ones place,
+    then sums these numbers across all lines.
     :param lines: List of lists of integers representing the input lines.
     :return: The computed sum as an integer.
     :rtype: int
@@ -26,23 +26,23 @@ def get_number(lines) -> int:
     result = 0
 
     for line in lines:
-        ten_dig = 0
+        second_digit = 0
         left_idx = 0
         # last digit excluded because last possibility to form 2 digit number
         # logic improbed in day3_2
         for i in range(len(line)-1):
-            if line[i] > ten_dig:
-                ten_dig = line[i]
+            if line[i] > second_digit:
+                second_digit = line[i]
                 left_idx = i
-                if ten_dig == 9:
+                if second_digit == 9:
                     break
-        digit_dig = 0
+        first_digit = 0
         for i in range(-1, -(len(line) - left_idx), -1):
-            if line[i] > digit_dig:
-                digit_dig = line[i]
-                if digit_dig == 9:
+            if line[i] > first_digit:
+                first_digit = line[i]
+                if first_digit == 9:
                     break
-        result += ten_dig * 10 + digit_dig
+        result += second_digit * 10 + first_digit
 
     return result
 
